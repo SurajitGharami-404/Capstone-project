@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'restaurant',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +84,7 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 
 DATABASES = {  
     'default': {  
-        'ENGINE': os.environ.get('ENGINE'),  
+        'ENGINE': 'django.db.backends.mysql',  
         'NAME': os.environ.get('NAME'),  
         'USER': os.environ.get('USER'),  
         'PASSWORD': os.environ.get('PASSWORD'),  
@@ -135,3 +137,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Djoser authentication
+DJOSER={"USER_ID_FIELD":"username"}
+
+#REST_Framework settings
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ]
+}
